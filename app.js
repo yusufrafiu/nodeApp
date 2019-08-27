@@ -17,6 +17,9 @@ mongoose.connection.on("error", err => {
 	console.error(err.message);
 });
 
+// import all models
+require("./models/Budget");
+
 // import all routers
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
