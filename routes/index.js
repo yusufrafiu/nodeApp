@@ -13,4 +13,9 @@ router.get("/budget", budgetController.showBudgets);
 router.get("/budget/add", budgetController.addBudget);
 router.post("/budget/add", budgetController.saveBudget);
 
+router.get("/budget/edit/:id", budgetController.editBudget);
+router.post("/budget/edit/:id", budgetController.updateBudget);
+
+router.get("/budget/delete/:id", budgetController.deleteBudget);
+
 module.exports = router;

@@ -15,20 +15,20 @@ head
     // balance
     .balance.text-center
       p.m-0 balance
-      h1#budgetBalance.font-weight-bold.m-0 &#x20A6;100,000
+      h1#budgetBalance.font-weight-bold.m-0 &#x20A6;#{balance}
     // contents
     .w-75.mx-auto
       // income and expense totals
       .row.mx-0.mt-2
         // income
         .col-sm-6.rounded.bg-success
-          h2#incomeTotals.bodyfont.pt-2 &#x20A6;0
+          h2#incomeTotals.bodyfont.pt-2 &#x20A6;#{income}
         // expense
         .col-sm-6.rounded.bg-danger
-          h2#expenseTotals.bodyfont.pt-2 &#x20A6;0
+          h2#expenseTotals.bodyfont.pt-2 &#x20A6;#{expense}
       // items
       ul.bg-dark-brand.items.p-5.mt-2.rounded
-        if budgets
+        if budgets.length > 0
           - let n = 1;
           each budget in budgets
             li.item(class=budget.type data-item=budget._id)
@@ -40,13 +40,17 @@ head
                 .col-sm-3
                   span July 25th
                 .col-sm-2
-                  span=budget.amount
+                  span &#x20A6;#{budget.amount}
               // edit and delete btns
               .icons
                 span
-                  i.fa.fa-edit.text-success.mr-2
+                  - const editPath = `/budget/edit/${budget._id}`
+                  - const deletePath = `/budget/delete/${budget._id}`
+                  a(href=editPath)
+                    i.fa.fa-edit.text-success.mr-2
                 span
-                  i.fa.fa-trash.text-tomato
+                  a(href=deletePath)
+                    i.fa.fa-trash.text-tomato
 
         else
           p You don&apos;t have any budget added to the list.

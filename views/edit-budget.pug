@@ -1,0 +1,33 @@
+extends budget-layout
+
+block content
+  .container.mt-5
+    form.w-75.mt-5.mx-auto#submitAddBudget(method='POST' action=`/budget/edit/${budget._id}`)
+      h1.text-capitalize.font-weight-bold edit #{budget.desc}
+      .form-group
+        label.font-weight-bold.text-danger(for='type') Type of Item
+        select#type.form-control(name='type')
+          if budget.type == 'income'
+            option(value='income' selected) income
+            option(value='expense') expense
+          else
+            option(value='income') income
+            option(value='expense' selected) expense
+      .form-group
+        label.font-weight-bold.text-danger(for='desc') Description
+        input#desc.form-control(type='text' name='desc' placeholder='Enter your item description' value=budget.desc)
+      .form-group
+        label.font-weight-bold.text-danger(for='amount') Enter the amount
+        input#amount.form-control(type='number' name='amount' placeholder='Enter the amount' value=budget.amount)
+      //
+        <div class="form-group">
+        <label class="font-weight-bold text-danger" for="time">Time</label>
+        <input
+        class="form-control"
+        type="date"
+        name="time"
+        id="time"
+        placeholder=""
+        />
+        </div>
+      button.btn.btn-primary.text-capitalize edit #{budget.desc}
