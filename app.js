@@ -4,12 +4,12 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+// setting environmental variables
+require("dotenv").config({ path: "./variables.env" });
+
 // connect to the mongodb database using mongoose
 const mongoose = require("mongoose");
-mongoose.connect(
-	"mongodb+srv://yusuf:STUnDredsTreAsTicaBL@nodeapp-gucqp.mongodb.net/test?retryWrites=true&w=majority",
-	{ useNewUrlParser: true }
-);
+mongoose.connect(process.env.DB, { useNewUrlParser: true });
 
 // if there's problem with db connection,
 // log error to the console
