@@ -11,5 +11,6 @@ router.get("/contact-us", mainController.contactUs);
 // budget routes
 router.get("/budget", budgetController.showBudgets);
 router.get("/budget/add", budgetController.addBudget);
+router.post("/budget/add", budgetController.saveBudget);
 
 module.exports = router;
